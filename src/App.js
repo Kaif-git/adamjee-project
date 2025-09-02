@@ -46,6 +46,16 @@ function App() {
       image: "images/students-showcase/Image_7.JPG_06-08-2025-04-57-47_s.JPG",
       title: "Interactive Classroom Learning",
       description: "Students actively participating in classroom discussions and learning"
+    },
+    {
+      image: "images/students-showcase/Image_05.jpg_29-05-2025-04-21-47_s.jpg",
+      title: "Student Excellence",
+      description: "Showcasing our students' dedication to academic and personal growth"
+    },
+    {
+      image: "images/Ghum.jfif",
+      title: "Students in Action",
+      description: "Our students actively engaged in learning and school activities"
     }
   ];
 
@@ -88,16 +98,46 @@ function App() {
     });
   };
 
-  // Gallery filter
+  // Modal state for image gallery
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Gallery filter with real images
   const galleryItems = [
-    { category: 'events', title: 'Bangla Noboborsho 2025', description: 'Traditional Bengali New Year celebration' },
-    { category: 'events', title: 'Cultural Performance', description: 'Students showcasing traditional arts' },
-    { category: 'events', title: 'Independence Day 2025', description: 'Patriotic celebration and remembrance' },
-    { category: 'academics', title: 'In-House Teacher Training', description: 'Professional development programs' },
-    { category: 'academics', title: 'News & Journalism Summit 2025', description: 'Developing communication skills' },
-    { category: 'facilities', title: 'Excellence in Education', description: 'Showcasing our academic strengths' },
-    { category: 'sports', title: 'Annual Sports Day', description: 'Inter-class competitions and athletic events' }
+    { category: 'events', title: 'Cultural Events', description: 'Traditional Bengali New Year celebration', image: 'images/events/cultural-events/Image_14-04-2025-1744610119.jpg_20-05-2025-04-29-26_s.jpg' },
+    { category: 'events', title: 'Cultural Performance', description: 'Students showcasing traditional arts', image: 'images/events/cultural-events/Image_14-04-2025-1744610128.jpg_20-05-2025-04-29-28_s.jpg' },
+    { category: 'events', title: 'Independence Day 2025', description: 'Patriotic celebration and remembrance', image: 'images/events/independence-day/Image_26-03-2025-1742962177.jpg_20-05-2025-04-37-16_s.jpg' },
+    { category: 'events', title: 'Independence Day Ceremony', description: 'Flag hoisting ceremony', image: 'images/events/independence-day/Image_26-03-2025-1742962192.jpg_20-05-2025-04-37-18_s.jpg' },
+    { category: 'academics', title: 'Journalism Summit', description: 'News & Journalism Summit 2025', image: 'images/events/journalism/Image_02-03-2025-1740892955.jpg_20-05-2025-05-27-56_s.jpg' },
+    { category: 'academics', title: 'Student Journalism', description: 'Developing communication skills', image: 'images/events/journalism/Image_02-03-2025-1740892964.jpg_20-05-2025-05-27-58_s.jpg' },
+    { category: 'events', title: 'Language Day Celebration', description: 'International Mother Language Day', image: 'images/events/language-day/Image_21-02-2025-1740119833.jpg_20-05-2025-05-32-13_s.jpg' },
+    { category: 'events', title: 'Language Day Activities', description: 'Cultural programs and competitions', image: 'images/events/language-day/Image_21-02-2025-1740119843.jpg_20-05-2025-05-32-15_s.jpg' },
+    { category: 'facilities', title: 'Why Study at ACPS', description: 'Excellence in Education', image: 'images/facilities/Content_Big_Why Study at ACPS_29-05-2025-10-38-52_s1.jpg' },
+    { category: 'facilities', title: 'School Facilities', description: 'Modern learning environment', image: 'images/facilities/Image_05.jpg_29-05-2025-04-21-47_s.jpg' }
   ];
+
+  // Functions for modal
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedImage(null);
+  };
+
+  const nextImage = () => {
+    const currentIndex = filteredGalleryItems.findIndex(item => item === selectedImage);
+    const nextIndex = (currentIndex + 1) % filteredGalleryItems.length;
+    setSelectedImage(filteredGalleryItems[nextIndex]);
+  };
+
+  const prevImage = () => {
+    const currentIndex = filteredGalleryItems.findIndex(item => item === selectedImage);
+    const prevIndex = currentIndex === 0 ? filteredGalleryItems.length - 1 : currentIndex - 1;
+    setSelectedImage(filteredGalleryItems[prevIndex]);
+  };
 
   const filteredGalleryItems = activeFilter === 'all' 
     ? galleryItems 
@@ -161,64 +201,12 @@ function App() {
               <p>Excellence in Education Since 1983 - EIIN: 107843</p>
             </div>
             
-            {/* Featured Slideshow */}
-            <div className="featured-slideshow">
-              <div className="slideshow-container">
-                {mainSlides.map((slide, index) => (
-                  <div key={index} className={`slide ${index === currentMainSlide ? 'active' : ''}`}>
-                    <img 
-                      src={slide.image} 
-                      alt={slide.title}
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'flex';
-                      }}
-                    />
-                    <div className="slide-placeholder" style={{
-                      width: '100%',
-                      height: '400px',
-                      background: `linear-gradient(135deg, var(--accent-color), var(--hover-color))`,
-                      display: 'none',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '3rem',
-                      color: '#F8F8FF'
-                    }}>
-                      <i className="fas fa-graduation-cap"></i>
-                    </div>
-                    <div className="slide-content">
-                      <h3>{slide.title}</h3>
-                      <p>{slide.description}</p>
-                    </div>
-                  </div>
-                ))}
-                
-                {/* Slideshow Navigation */}
-                <button className="slide-btn prev-btn" onClick={() => changeMainSlide(-1)}>
-                  <i className="fas fa-chevron-left"></i>
-                </button>
-                <button className="slide-btn next-btn" onClick={() => changeMainSlide(1)}>
-                  <i className="fas fa-chevron-right"></i>
-                </button>
-                
-                {/* Slide Indicators */}
-                <div className="slide-indicators">
-                  {mainSlides.map((_, index) => (
-                    <span 
-                      key={index}
-                      className={`indicator ${index === currentMainSlide ? 'active' : ''}`}
-                      onClick={() => setCurrentMainSlide(index)}
-                    ></span>
-                  ))}
-                </div>
-              </div>
-            </div>
             
             <div className="home-content">
               <div className="school-highlights">
                 {[
-                  { icon: 'fas fa-trophy', title: 'Academic Excellence', description: 'Consistently achieving outstanding results in SSC and HSC examinations' },
-                  { icon: 'fas fa-users', title: '1500+ Students', description: 'A diverse community of learners from grades VI to XII' },
+                  { icon: 'fas fa-trophy', title: 'Academic Excellence', description: 'Consistently achieving outstanding results in SSC examinations' },
+                  { icon: 'fas fa-users', title: '1500+ Students', description: 'A diverse community of learners from grades I to X' },
                   { icon: 'fas fa-chalkboard-teacher', title: '80+ Faculty', description: 'Dedicated and qualified teachers committed to student success' },
                   { icon: 'fas fa-building', title: 'Modern Campus', description: 'State-of-the-art facilities including labs, library, and sports complex' }
                 ].map((highlight, index) => (
@@ -339,11 +327,11 @@ function App() {
                 <div className="info-card">
                   <h4>Academic Programs</h4>
                   <ul>
+                    <li>Class I to V (Primary)</li>
                     <li>Class VI to X (SSC)</li>
-                    <li>Class XI to XII (HSC)</li>
-                    <li>Science Group</li>
-                    <li>Business Studies Group</li>
-                    <li>Humanities Group</li>
+                    <li>Science Group (Class IX-X)</li>
+                    <li>Business Studies Group (Class IX-X)</li>
+                    <li>Humanities Group (Class IX-X)</li>
                   </ul>
                 </div>
               </div>
@@ -524,13 +512,36 @@ function App() {
               </div>
               <div className="gallery-grid">
                 {filteredGalleryItems.map((item, index) => (
-                  <div key={index} className="gallery-item" data-category={item.category}>
-                    <div className="gallery-image">
-                      <i className="fas fa-camera"></i>
+                  <div key={index} className="gallery-item" data-category={item.category} onClick={() => openModal(item)}>
+                    <div className="gallery-image-container">
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        className="gallery-img"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      <div className="gallery-placeholder" style={{
+                        display: 'none',
+                        width: '100%',
+                        height: '200px',
+                        background: 'linear-gradient(135deg, var(--accent-color), var(--hover-color))',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '2rem',
+                        color: '#F8F8FF'
+                      }}>
+                        <i className="fas fa-image"></i>
+                      </div>
                     </div>
                     <div className="gallery-overlay">
                       <h4>{item.title}</h4>
                       <p>{item.description}</p>
+                      <div className="gallery-hover-icon">
+                        <i className="fas fa-search-plus"></i>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -548,25 +559,19 @@ function App() {
             </div>
             <div className="students-grid">
               {[
-                { name: 'Ahmed Rahman', class: 'Class X - Roll: 001', badges: ['Science', 'Honor Student'] },
-                { name: 'Fatima Khan', class: 'Class IX - Roll: 015', badges: ['Arts', 'Debate Team'] },
-                { name: 'Mohammad Ali', class: 'Class VIII - Roll: 023', badges: ['Sports', 'Cricket Captain'] },
-                { name: 'Ayesha Begum', class: 'Class X - Roll: 007', badges: ['Commerce', 'Class Monitor'] },
-                { name: 'Rafiq Islam', class: 'Class IX - Roll: 012', badges: ['Science', 'Math Club'] },
-                { name: 'Nadia Hassan', class: 'Class VIII - Roll: 018', badges: ['Arts', 'Art Club'] }
-              ].map((student, index) => (
+                'Hizbur', 'Zubair', 'Alif', 'Marshad', 'Pranjol', 'Ahnaf', 'Aaryan', 'Rakibul', 
+                'Sami', 'Masum', 'Raiyan', 'Jabir', 'Saad', 'Niladri', 'Aditya', 'Zayed', 
+                'Farabi', 'Ruwayd', 'Mahir', 'Tousif', 'Sanvi', 'Rownak', 'Kaysan', 'Wasi', 
+                'Maimun', 'Fahim', 'Shadman', 'Iyaad', 'Limon', 'Jalis', 'Mahdi', 'Aseer', 
+                'Ilhum', 'Jafran', 'Sayed', 'Amlam', 'Farhan', 'Seam', 'Ahnaf', 'Labib', 
+                'Kaif', 'Shopnil'
+              ].map((studentName, index) => (
                 <div key={index} className="student-card">
                   <div className="student-avatar">
                     <i className="fas fa-user"></i>
                   </div>
                   <div className="student-info">
-                    <h3>{student.name}</h3>
-                    <p>{student.class}</p>
-                    <div className="student-badges">
-                      {student.badges.map((badge, badgeIndex) => (
-                        <span key={badgeIndex} className="badge">{badge}</span>
-                      ))}
-                    </div>
+                    <h3>{studentName}</h3>
                   </div>
                 </div>
               ))}
@@ -583,10 +588,16 @@ function App() {
             </div>
             <div className="teachers-grid">
               {[
-                { name: 'Dr. Karim Ahmed', designation: 'Principal', subject: 'Educational Leadership', email: 'principal@acps.edu.bd' },
-                { name: 'Mrs. Salma Rahman', designation: 'Senior Teacher', subject: 'Mathematics', email: 'salma.rahman@acps.edu.bd' },
-                { name: 'Mr. Jahangir Hossain', designation: 'Assistant Teacher', subject: 'English Literature', email: 'jahangir.hossain@acps.edu.bd' },
-                { name: 'Ms. Ruma Khatun', designation: 'Science Teacher', subject: 'Physics & Chemistry', email: 'ruma.khatun@acps.edu.bd' }
+                { name: 'Bishno Sir', subject: 'Chemistry', designation: 'Class Teacher' },
+                { name: 'Yahya Sir', subject: 'Biology', designation: 'Teacher' },
+                { name: 'Naheed Miss', subject: 'English 2', designation: 'Teacher' },
+                { name: 'Aminul Sir', subject: 'Bangla', designation: 'Teacher' },
+                { name: 'Zakir Sir', subject: 'Math', designation: 'Teacher' },
+                { name: 'Zamman Sir', subject: 'Higher Math', designation: 'Teacher' },
+                { name: 'Masum Sir', subject: 'Religion', designation: 'Teacher' },
+                { name: 'Zahirul Sir', subject: 'Physics', designation: 'Teacher' },
+                { name: 'Maskuba Miss', subject: 'BGS', designation: 'Teacher' },
+                { name: 'Hassan Sir', subject: 'English 1st', designation: 'Teacher' }
               ].map((teacher, index) => (
                 <div key={index} className="teacher-card">
                   <div className="teacher-avatar">
@@ -596,10 +607,6 @@ function App() {
                     <h3>{teacher.name}</h3>
                     <p className="designation">{teacher.designation}</p>
                     <p className="subject">{teacher.subject}</p>
-                    <div className="teacher-contact">
-                      <i className="fas fa-envelope"></i>
-                      <span>{teacher.email}</span>
-                    </div>
                   </div>
                 </div>
               ))}
@@ -619,21 +626,21 @@ function App() {
                 <h3>Curriculum Overview</h3>
                 <div className="curriculum-grid">
                   <div className="curriculum-card">
+                    <h4>Primary Level (Class I-V)</h4>
+                    <ul>
+                      <li>National Curriculum & Textbook Board (NCTB) syllabus</li>
+                      <li>Strong foundation in core subjects</li>
+                      <li>Creative learning and skill development</li>
+                      <li>Character building and moral education</li>
+                    </ul>
+                  </div>
+                  <div className="curriculum-card">
                     <h4>Secondary Level (Class VI-X)</h4>
                     <ul>
                       <li>National Curriculum & Textbook Board (NCTB) syllabus</li>
                       <li>SSC Examination preparation</li>
                       <li>Co-curricular activities integration</li>
                       <li>Digital learning resources</li>
-                    </ul>
-                  </div>
-                  <div className="curriculum-card">
-                    <h4>Higher Secondary Level (Class XI-XII)</h4>
-                    <ul>
-                      <li>Science, Business Studies, and Humanities</li>
-                      <li>HSC Examination preparation</li>
-                      <li>University admission guidance</li>
-                      <li>Career counseling services</li>
                     </ul>
                   </div>
                 </div>
@@ -669,9 +676,9 @@ function App() {
                     <h4>Fee Structure (Monthly)</h4>
                     <table className="fee-table">
                       <tbody>
+                        <tr><td>Class I-V</td><td>৳2,000</td></tr>
                         <tr><td>Class VI-VIII</td><td>৳2,500</td></tr>
                         <tr><td>Class IX-X</td><td>৳2,800</td></tr>
-                        <tr><td>Class XI-XII</td><td>৳3,200</td></tr>
                       </tbody>
                     </table>
                     <p className="fee-note">*Additional fees may apply for special programs and activities</p>
@@ -682,6 +689,49 @@ function App() {
           </section>
         )}
       </main>
+
+      {/* Modal for Gallery Images */}
+      {modalOpen && selectedImage && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>
+              <i className="fas fa-times"></i>
+            </button>
+            <button className="modal-prev" onClick={prevImage}>
+              <i className="fas fa-chevron-left"></i>
+            </button>
+            <button className="modal-next" onClick={nextImage}>
+              <i className="fas fa-chevron-right"></i>
+            </button>
+            <img 
+              src={selectedImage.image} 
+              alt={selectedImage.title}
+              className="modal-image"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <div className="modal-placeholder" style={{
+              display: 'none',
+              width: '100%',
+              height: '400px',
+              background: 'linear-gradient(135deg, var(--accent-color), var(--hover-color))',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '3rem',
+              color: '#F8F8FF'
+            }}>
+              <i className="fas fa-image"></i>
+            </div>
+            <div className="modal-info">
+              <h3>{selectedImage.title}</h3>
+              <p>{selectedImage.description}</p>
+              <span className="modal-category">{selectedImage.category}</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Floating Background Elements */}
       <div className="background-elements">
