@@ -819,4 +819,137 @@ document.addEventListener('DOMContentLoaded', () => {
             welcome.remove();
         }, 4000);
     }, 2000);
+    
+    // Initialize slideshows
+    initializeSlideshows();
 });
+
+// Slideshow functionality
+let currentMainSlide = 0;
+let currentStudentSlide = 0;
+let mainSlideInterval;
+let studentSlideInterval;
+
+// Main slideshow functions
+function showMainSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    if (!slides.length) return;
+    
+    if (n >= slides.length) { currentMainSlide = 0; }
+    if (n < 0) { currentMainSlide = slides.length - 1; }
+    
+    // Hide all slides and remove active indicators
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    // Show current slide and highlight indicator
+    slides[currentMainSlide].classList.add('active');
+    if (indicators[currentMainSlide]) {
+        indicators[currentMainSlide].classList.add('active');
+    }
+}
+
+function changeSlide(n) {
+    clearInterval(mainSlideInterval);
+    currentMainSlide += n;
+    showMainSlide(currentMainSlide);
+    startMainSlideshow();
+}
+
+function currentSlide(n) {
+    clearInterval(mainSlideInterval);
+    currentMainSlide = n - 1;
+    showMainSlide(currentMainSlide);
+    startMainSlideshow();
+}
+
+function startMainSlideshow() {
+    mainSlideInterval = setInterval(() => {
+        currentMainSlide++;
+        showMainSlide(currentMainSlide);
+    }, 5000); // Change slide every 5 seconds
+}
+
+// Student slideshow functions
+function showStudentSlide(n) {
+    const slides = document.querySelectorAll('.student-slide');
+    const indicators = document.querySelectorAll('.student-indicator');
+    
+    if (!slides.length) return;
+    
+    if (n >= slides.length) { currentStudentSlide = 0; }
+    if (n < 0) { currentStudentSlide = slides.length - 1; }
+    
+    // Hide all slides and remove active indicators
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    // Show current slide and highlight indicator
+    slides[currentStudentSlide].classList.add('active');
+    if (indicators[currentStudentSlide]) {
+        indicators[currentStudentSlide].classList.add('active');
+    }
+}
+
+function changeStudentSlide(n) {
+    clearInterval(studentSlideInterval);
+    currentStudentSlide += n;
+    showStudentSlide(currentStudentSlide);
+    startStudentSlideshow();
+}
+
+function currentStudentSlide(n) {
+    clearInterval(studentSlideInterval);
+    currentStudentSlide = n - 1;
+    showStudentSlide(currentStudentSlide);
+    startStudentSlideshow();
+}
+
+function startStudentSlideshow() {
+    studentSlideInterval = setInterval(() => {
+        currentStudentSlide++;
+        showStudentSlide(currentStudentSlide);
+    }, 4000); // Change slide every 4 seconds
+}
+
+function initializeSlideshows() {
+    // Initialize main slideshow
+    if (document.querySelector('.slideshow-container')) {
+        showMainSlide(currentMainSlide);
+        startMainSlideshow();
+        
+        // Pause slideshow on hover
+        const mainSlideshowContainer = document.querySelector('.slideshow-container');
+        mainSlideshowContainer.addEventListener('mouseenter', () => {
+            clearInterval(mainSlideInterval);
+        });
+        
+        mainSlideshowContainer.addEventListener('mouseleave', () => {
+            startMainSlideshow();
+        });
+    }
+    
+    // Initialize student slideshow
+    if (document.querySelector('.student-slideshow-container')) {
+        showStudentSlide(currentStudentSlide);
+        startStudentSlideshow();
+        
+        // Pause slideshow on hover
+        const studentSlideshowContainer = document.querySelector('.student-slideshow-container');
+        studentSlideshowContainer.addEventListener('mouseenter', () => {
+            clearInterval(studentSlideInterval);
+        });
+        
+        studentSlideshowContainer.addEventListener('mouseleave', () => {
+            startStudentSlideshow();
+        });
+    }
+}
+
+// Make functions globally accessible for onclick events
+window.changeSlide = changeSlide;
+window.currentSlide = currentSlide;
+window.changeStudentSlide = changeStudentSlide;
+window.currentStudentSlide = currentStudentSlide;

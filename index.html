@@ -77,6 +77,57 @@
                     <h2>Welcome to Adamjee Cantonment Public School</h2>
                     <p>Excellence in Education Since 1983 - EIIN: 107843</p>
                 </div>
+                
+                <!-- Featured Slideshow -->
+                <div class="featured-slideshow">
+                    <div class="slideshow-container">
+                        <div class="slide active">
+                            <img src="images/slideshow/cultural-1.jpg" alt="Bangla Noboborsho Celebration">
+                            <div class="slide-content">
+                                <h3>Bangla Noboborsho Celebration</h3>
+                                <p>Celebrating Bengali New Year with traditional cultural programs</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="images/slideshow/independence-1.jpg" alt="Independence Day">
+                            <div class="slide-content">
+                                <h3>Independence Day Celebration</h3>
+                                <p>Honoring our nation's independence with patriotic programs</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="images/slideshow/journalism-1.jpg" alt="Journalism Summit">
+                            <div class="slide-content">
+                                <h3>Intra News & Journalism Summit</h3>
+                                <p>Developing communication and journalism skills</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="images/slideshow/facilities-1.jpg" alt="Modern Facilities">
+                            <div class="slide-content">
+                                <h3>Modern Learning Facilities</h3>
+                                <p>State-of-the-art infrastructure for quality education</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slideshow Navigation -->
+                        <button class="slide-btn prev-btn" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next-btn" onclick="changeSlide(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <!-- Slide Indicators -->
+                        <div class="slide-indicators">
+                            <span class="indicator active" onclick="currentSlide(1)"></span>
+                            <span class="indicator" onclick="currentSlide(2)"></span>
+                            <span class="indicator" onclick="currentSlide(3)"></span>
+                            <span class="indicator" onclick="currentSlide(4)"></span>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="home-content">
                     <div class="school-highlights">
                         <div class="highlight-card">
@@ -100,6 +151,54 @@
                             <p>State-of-the-art facilities including labs, library, and sports complex</p>
                         </div>
                     </div>
+                    
+                    <!-- Student Showcase -->
+                    <div class="student-showcase">
+                        <h3>Our Students in Action</h3>
+                        <div class="student-slideshow-container">
+                            <div class="student-slides">
+                                <div class="student-slide active">
+                                    <img src="images/students-showcase/Content_Big_Motivational Speech for Students and Teachers_18-08-2025-08-01-51_s4.jpg" alt="Motivational Speech Session">
+                                    <div class="student-slide-content">
+                                        <h4>Motivational Speech Session</h4>
+                                        <p>Students and teachers participating in an inspiring motivational session</p>
+                                    </div>
+                                </div>
+                                <div class="student-slide">
+                                    <img src="images/students-showcase/Image_6.JPG_06-08-2025-04-57-46_s.JPG" alt="Student Activities">
+                                    <div class="student-slide-content">
+                                        <h4>Student Activities</h4>
+                                        <p>Engaging in various educational and extracurricular activities</p>
+                                    </div>
+                                </div>
+                                <div class="student-slide">
+                                    <img src="images/students-showcase/Image_7.JPG_06-08-2025-04-57-47_s.JPG" alt="Classroom Learning">
+                                    <div class="student-slide-content">
+                                        <h4>Interactive Classroom Learning</h4>
+                                        <p>Students actively participating in classroom discussions and learning</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Student Slideshow Controls -->
+                            <div class="student-slideshow-controls">
+                                <button class="student-slide-btn prev" onclick="changeStudentSlide(-1)">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="student-slide-btn next" onclick="changeStudentSlide(1)">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Student Slide Indicators -->
+                            <div class="student-slide-indicators">
+                                <span class="student-indicator active" onclick="currentStudentSlide(1)"></span>
+                                <span class="student-indicator" onclick="currentStudentSlide(2)"></span>
+                                <span class="student-indicator" onclick="currentStudentSlide(3)"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="recent-updates">
                         <h3>Recent Updates</h3>
                         <div class="updates-list">
@@ -348,85 +447,123 @@
                         <button class="filter-btn" data-filter="facilities">Facilities</button>
                     </div>
                     <div class="gallery-grid">
+                        <!-- Cultural Events -->
                         <div class="gallery-item" data-category="events">
                             <div class="gallery-image">
-                                <img src="images/events/science-fair.jpg" alt="Science Fair 2024" class="gallery-img">
+                                <img src="images/events/cultural-events/Image_14-04-2025-1744610119.jpg_20-05-2025-04-29-26_s.jpg" alt="Bangla Noboborsho Celebration" class="gallery-img">
                             </div>
                             <div class="gallery-overlay">
-                                <h4>Science Fair 2024</h4>
-                                <p>Student projects showcase</p>
+                                <h4>Bangla Noboborsho 2025</h4>
+                                <p>Traditional Bengali New Year celebration</p>
                             </div>
                         </div>
-                        <div class="gallery-item" data-category="sports">
+                        <div class="gallery-item" data-category="events">
                             <div class="gallery-image">
-                                <img src="images/events/sports.jpg" alt="Inter-House Athletics" class="gallery-img">
+                                <img src="images/events/cultural-events/Image_14-04-2025-1744610128.jpg_20-05-2025-04-29-28_s.jpg" alt="Cultural Performance" class="gallery-img">
                             </div>
                             <div class="gallery-overlay">
-                                <h4>Inter-House Athletics</h4>
-                                <p>Annual sports competition</p>
+                                <h4>Cultural Performance</h4>
+                                <p>Students showcasing traditional arts</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Independence Day -->
+                        <div class="gallery-item" data-category="events">
+                            <div class="gallery-image">
+                                <img src="images/events/independence-day/Image_26-03-2025-1742962177.jpg_20-05-2025-04-37-16_s.jpg" alt="Independence Day Celebration" class="gallery-img">
+                            </div>
+                            <div class="gallery-overlay">
+                                <h4>Independence Day 2025</h4>
+                                <p>Patriotic celebration and remembrance</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-category="events">
+                            <div class="gallery-image">
+                                <img src="images/events/independence-day/Image_26-03-2025-1742962192.jpg_20-05-2025-04-37-18_s.jpg" alt="Flag Ceremony" class="gallery-img">
+                            </div>
+                            <div class="gallery-overlay">
+                                <h4>Flag Hoisting Ceremony</h4>
+                                <p>Students honoring our national flag</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Language Day -->
+                        <div class="gallery-item" data-category="events">
+                            <div class="gallery-image">
+                                <img src="images/events/language-day/Image_21-02-2025-1740119833.jpg_20-05-2025-05-32-13_s.jpg" alt="International Mother Language Day" class="gallery-img">
+                            </div>
+                            <div class="gallery-overlay">
+                                <h4>International Mother Language Day</h4>
+                                <p>Celebrating linguistic diversity and heritage</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-category="events">
+                            <div class="gallery-image">
+                                <img src="images/events/language-day/Image_21-02-2025-1740119843.jpg_20-05-2025-05-32-15_s.jpg" alt="Language Day Program" class="gallery-img">
+                            </div>
+                            <div class="gallery-overlay">
+                                <h4>Language Day Program</h4>
+                                <p>Students performing cultural presentations</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Training and Academic Programs -->
+                        <div class="gallery-item" data-category="academics">
+                            <div class="gallery-image">
+                                <img src="images/events/training/Image_13-03-2025-1741835852.jpg_20-05-2025-05-22-15_s.jpg" alt="In House Training" class="gallery-img">
+                            </div>
+                            <div class="gallery-overlay">
+                                <h4>In-House Teacher Training</h4>
+                                <p>Professional development programs</p>
                             </div>
                         </div>
                         <div class="gallery-item" data-category="academics">
                             <div class="gallery-image">
-                                <img src="images/gallery/1.jpg" alt="Science Laboratory" class="gallery-img">
+                                <img src="images/events/training/Image_13-03-2025-1741835862.jpg_20-05-2025-05-22-17_s.jpg" alt="Educational Workshop" class="gallery-img">
                             </div>
                             <div class="gallery-overlay">
-                                <h4>Science Laboratory</h4>
-                                <p>Hands-on learning</p>
+                                <h4>Educational Workshop</h4>
+                                <p>Enhancing teaching methodologies</p>
                             </div>
                         </div>
-                        <div class="gallery-item" data-category="events">
+                        
+                        <!-- Journalism Summit -->
+                        <div class="gallery-item" data-category="academics">
                             <div class="gallery-image">
-                                <img src="images/events/cultural.jpg" alt="Cultural Program" class="gallery-img">
+                                <img src="images/events/journalism/Image_02-03-2025-1740892955.jpg_20-05-2025-05-27-56_s.jpg" alt="News and Journalism Summit" class="gallery-img">
                             </div>
                             <div class="gallery-overlay">
-                                <h4>Cultural Program</h4>
-                                <p>Student performances</p>
-                            </div>
-                        </div>
-                        <div class="gallery-item" data-category="facilities">
-                            <div class="gallery-image">
-                                <img src="images/gallery/2.jpg" alt="School Library" class="gallery-img">
-                            </div>
-                            <div class="gallery-overlay">
-                                <h4>School Library</h4>
-                                <p>Modern learning resources</p>
-                            </div>
-                        </div>
-                        <div class="gallery-item" data-category="sports">
-                            <div class="gallery-image">
-                                <img src="images/gallery/3.jpg" alt="Football Championship" class="gallery-img">
-                            </div>
-                            <div class="gallery-overlay">
-                                <h4>Football Championship</h4>
-                                <p>Inter-school competition</p>
+                                <h4>News & Journalism Summit 2025</h4>
+                                <p>Developing communication skills</p>
                             </div>
                         </div>
                         <div class="gallery-item" data-category="academics">
                             <div class="gallery-image">
-                                <img src="images/gallery/4.jpg" alt="Smart Classrooms" class="gallery-img">
+                                <img src="images/events/journalism/Image_02-03-2025-1740892964.jpg_20-05-2025-05-27-58_s.jpg" alt="Media Workshop" class="gallery-img">
                             </div>
                             <div class="gallery-overlay">
-                                <h4>Smart Classrooms</h4>
-                                <p>Digital learning environment</p>
+                                <h4>Media Workshop</h4>
+                                <p>Students learning journalism techniques</p>
                             </div>
                         </div>
-                        <div class="gallery-item" data-category="events">
+                        
+                        <!-- Facilities -->
+                        <div class="gallery-item" data-category="facilities">
                             <div class="gallery-image">
-                                <img src="images/gallery/5.jpg" alt="Victory Day Celebration" class="gallery-img">
+                                <img src="images/facilities/Content_Big_Why Study at ACPS_29-05-2025-10-38-52_s1.jpg" alt="Why Study at ACPS" class="gallery-img">
                             </div>
                             <div class="gallery-overlay">
-                                <h4>Victory Day Celebration</h4>
-                                <p>Patriotic program</p>
+                                <h4>Excellence in Education</h4>
+                                <p>Showcasing our academic strengths</p>
                             </div>
                         </div>
                         <div class="gallery-item" data-category="facilities">
                             <div class="gallery-image">
-                                <img src="images/gallery/6.jpg" alt="Computer Lab" class="gallery-img">
+                                <img src="images/facilities/Image_05.jpg_29-05-2025-04-21-47_s.jpg" alt="School Facilities" class="gallery-img">
                             </div>
                             <div class="gallery-overlay">
-                                <h4>Computer Lab</h4>
-                                <p>Technology integration</p>
+                                <h4>Modern School Facilities</h4>
+                                <p>State-of-the-art learning environment</p>
                             </div>
                         </div>
                     </div>
