@@ -166,11 +166,19 @@ function App() {
               <div className="slideshow-container">
                 {mainSlides.map((slide, index) => (
                   <div key={index} className={`slide ${index === currentMainSlide ? 'active' : ''}`}>
+                    <img 
+                      src={slide.image} 
+                      alt={slide.title}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
                     <div className="slide-placeholder" style={{
                       width: '100%',
                       height: '400px',
                       background: `linear-gradient(135deg, var(--accent-color), var(--hover-color))`,
-                      display: 'flex',
+                      display: 'none',
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontSize: '3rem',
@@ -229,11 +237,19 @@ function App() {
                   <div className="student-slides">
                     {studentSlides.map((slide, index) => (
                       <div key={index} className={`student-slide ${index === currentStudentSlide ? 'active' : ''}`}>
+                        <img 
+                          src={slide.image} 
+                          alt={slide.title}
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'flex';
+                          }}
+                        />
                         <div className="slide-placeholder" style={{
                           width: '100%',
                           height: '300px',
                           background: `linear-gradient(135deg, var(--accent-color), var(--hover-color))`,
-                          display: 'flex',
+                          display: 'none',
                           alignItems: 'center',
                           justifyContent: 'center',
                           fontSize: '2.5rem',
