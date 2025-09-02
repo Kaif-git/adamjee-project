@@ -24,6 +24,9 @@ class SchoolWebsite {
             });
         });
 
+        // Gallery filter functionality
+        this.setupGalleryFilters();
+
         // Add hover effects to cards
         this.setupCardHoverEffects();
         
@@ -554,6 +557,64 @@ class SchoolWebsite {
         setTimeout(() => {
             feedback.remove();
         }, 1000);
+    }
+
+    // Gallery filter functionality
+    setupGalleryFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeInScale 0.5s ease forwards';
+                    } else {
+                        item.style.animation = 'fadeOutScale 0.3s ease forwards';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Add filter animation styles
+        if (!document.querySelector('#gallery-filter-styles')) {
+            const style = document.createElement('style');
+            style.id = 'gallery-filter-styles';
+            style.textContent = `
+                @keyframes fadeInScale {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.8);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+                @keyframes fadeOutScale {
+                    from {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: scale(0.8);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
     }
 
     // Easter egg: Konami code for confetti
